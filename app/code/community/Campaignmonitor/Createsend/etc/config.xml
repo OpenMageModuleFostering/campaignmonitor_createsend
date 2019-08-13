@@ -19,7 +19,7 @@
 <config>
     <modules>
         <Campaignmonitor_Createsend>
-            <version>1.0.7</version>
+            <version>1.0.8</version>
         </Campaignmonitor_Createsend>
     </modules>
     <adminhtml>

@@ -1,7 +1,7 @@
 {
     "name": "OpenMageModuleFostering/Campaignmonitor_Createsend",
     "type": "magento-module",
-    "license": "OSL",
+    "license": "MIT",
     "homepage": "",
     "description": "Use your rich customer data in Magento to segment your customers and send hyper-targeted personal emails.",
     "authors": [

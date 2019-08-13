@@ -166,6 +166,13 @@ class Campaignmonitor_Createsend_Model_Api
         $version = Mage::getVersion();
         $edition = 'ce';
 
+        if (version_compare($version, '1.7.0.0', '>=')) {
+            // version 1.7 has a special method for finding the edition
+            $edition = Mage::getEdition();
+
+            return sprintf('%s %s', $edition, $version);
+        }
+
         // If the version is above 1.6.0.0 it might be professional or enterprise.
         if (version_compare($version, '1.6.0.0', '>=')) {
 
@@ -175,7 +182,7 @@ class Campaignmonitor_Createsend_Model_Api
                 try {
                     $hasGiftcards = Mage::getModel('enterprise_giftcard/giftcard');
                 } catch (Exception $exception) {
-
+                    return sprintf('%s %s', $edition, $version);
                 }
 
                 if ($hasGiftcards) {
@@ -193,9 +200,7 @@ class Campaignmonitor_Createsend_Model_Api
             } catch(Exception $e){
                 Mage::logException($e);
             }
-
         }
-
         return sprintf('%s %s', $edition, $version);
     }
 
@@ -640,8 +645,6 @@ class Campaignmonitor_Createsend_Model_Api
             $scope,
             $scopeId
         );
-
-        Mage::log( print_r( $subscriberData, true ), null, 'subscribe.log', true );
     }
 
     /**

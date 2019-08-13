@@ -154,6 +154,14 @@
 
         field.options.length = 0;
 
+        if (data.length === 1) {
+            var emptyList = {};
+            emptyList.label = 'No List found';
+            emptyList.value = 'No List found';
+            data.push(emptyList);
+        }
+
+
         if (groupCmLists === undefined && data.length > 1) {
             // Reset new list group because we want it after the CM lists
             if (groupNewList !== undefined) {
@@ -172,12 +180,13 @@
             $('createsend_general_api_list_id').insert(groupNewList);
         }
 
+
         var listCount = 0;
         var newCount = 0;
         data.each(
             function(c) {
                 var selected = false;
-                if (c.value == savedListId) {
+                if (c.value == savedListId || c.value === 'No List found') {
                     selected = true;
                 }
                 var option = new Option(c.label, c.value, selected, selected);

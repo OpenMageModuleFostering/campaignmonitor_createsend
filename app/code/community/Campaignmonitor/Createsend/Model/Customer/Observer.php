@@ -510,7 +510,7 @@ class Campaignmonitor_Createsend_Model_Customer_Observer
                     }
                 }
 
-               
+
 
                 // Clear out other items, if any
                 for ($i = $count + 1; $i <= $maxWishlistItems; $i++) {

@@ -168,21 +168,26 @@ class Campaignmonitor_Createsend_Model_Api
 
         // If the version is above 1.6.0.0 it might be professional or enterprise.
         if (version_compare($version, '1.6.0.0', '>=')) {
-            // Calculate whether the install has gift cards. if it doesn't, it's community.
-            $hasGiftcards = Mage::getModel('enterprise_giftcard/giftcard');
 
-            if ($hasGiftcards) {
-                // Check whether the installation has the enterprise search observer. Only enterprise has this.
-                $hasSolr = Mage::getModel('enterprise_search/observer');
+            try {
+                // Calculate whether the install has gift cards. if it doesn't, it's community.
+                $hasGiftcards = Mage::getModel('enterprise_giftcard/giftcard');
+                if ($hasGiftcards) {
+                    // Check whether the installation has the enterprise search observer. Only enterprise has this.
+                    $hasSolr = Mage::getModel('enterprise_search/observer');
 
-                if ($hasSolr) {
-                    $edition = 'ee';
+                    if ($hasSolr) {
+                        $edition = 'ee';
+                    } else {
+                        $edition = 'pe';
+                    }
                 } else {
-                    $edition = 'pe';
+                    $edition = 'ce';
                 }
-            } else {
-                $edition = 'ce';
+            } catch(Exception $e){
+                Mage::logException($e);
             }
+
         }
 
         return sprintf('%s %s', $edition, $version);

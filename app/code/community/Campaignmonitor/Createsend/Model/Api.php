@@ -634,6 +634,8 @@ class Campaignmonitor_Createsend_Model_Api
             $scope,
             $scopeId
         );
+
+        Mage::log( print_r( $subscriberData, true ), null, 'subscribe.log', true );
     }
 
     /**
@@ -652,6 +654,7 @@ class Campaignmonitor_Createsend_Model_Api
         /** @var Campaignmonitor_Createsend_Model_Config_Scope $scopeModel */
         $scopeModel = Mage::getModel('createsend/config_scope');
         $storeId = $scopeModel->getStoreIdFromScope($scope, $scopeId);
+
 
         return $this->call(
             Zend_Http_Client::POST,

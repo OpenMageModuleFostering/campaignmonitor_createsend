@@ -51,7 +51,7 @@ class Campaignmonitor_Createsend_Model_List_Initial_Cron extends Campaignmonitor
             );
         }
 
-        Mage::log( print_r($processData, true), null, 'fullsync.cron.log', true );
+
         // Check for stale process
         if ($processData['status'] === $configHelper::FLAG_PROCESS_RUNNING) {
             $startDate = new DateTime($processData['start']);

@@ -171,7 +171,13 @@ class Campaignmonitor_Createsend_Model_Api
 
             try {
                 // Calculate whether the install has gift cards. if it doesn't, it's community.
-                $hasGiftcards = Mage::getModel('enterprise_giftcard/giftcard');
+                $hasGiftcards = false;
+                try {
+                    $hasGiftcards = Mage::getModel('enterprise_giftcard/giftcard');
+                } catch (Exception $exception) {
+
+                }
+
                 if ($hasGiftcards) {
                     // Check whether the installation has the enterprise search observer. Only enterprise has this.
                     $hasSolr = Mage::getModel('enterprise_search/observer');
@@ -745,6 +751,8 @@ class Campaignmonitor_Createsend_Model_Api
         $errors = array();
 
         foreach ($linkedAttributes as $la) {
+
+            $la['magento'] = htmlspecialchars( $la['magento'] );
             $magentoAtt = $la['magento'];
             $cmAtt = $attrSource->getCustomFieldName($la['magento'], true);
             $dataType = $attrSource->getFieldType($magentoAtt);

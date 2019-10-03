@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Campaignmonitor_Createsend",
+    "name": "OpenMageModuleFostering\/Campaignmonitor_Createsend",
     "type": "magento-module",
     "license": "MIT",
     "homepage": "",
     "description": "Use your rich customer data in Magento to segment your customers and send hyper-targeted personal emails.",
     "authors": [
-    {
-        "name": "Campaign Monitor",
-        "email": "vibhor@campaignmonitor.com"
-    }
-],
+        {
+            "name": "Campaign Monitor",
+            "email": "vibhor@campaignmonitor.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
